@@ -6,6 +6,9 @@ import org.hibernate.cfg.AvailableSettings;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
+import com.javaplenomarcosabreu.model.Departamento;
+import com.javaplenomarcosabreu.model.Empregado;
+
 
 public class HibernateUtil {
 
@@ -15,11 +18,12 @@ public class HibernateUtil {
 		Configuration c = new Configuration();
 
 		/* todos os javabeans aqui */
-		/*c.addAnnotatedClass(Usuario.class);*/
+		c.addAnnotatedClass(Empregado.class);
+		c.addAnnotatedClass(Departamento.class);
 
 		c.setProperty(AvailableSettings.DIALECT, "org.hibernate.dialect.Oracle10gDialect");
 		c.setProperty(AvailableSettings.DRIVER, "oracle.jdbc.driver.OracleDriver");
-		c.setProperty(AvailableSettings.USER, "agendaspringhibernate");
+		c.setProperty(AvailableSettings.USER, "javapleno");
 		c.setProperty(AvailableSettings.PASS, "oracle");
 		c.setProperty(AvailableSettings.URL, "jdbc:oracle:thin:@localhost:1521:xe");
 
