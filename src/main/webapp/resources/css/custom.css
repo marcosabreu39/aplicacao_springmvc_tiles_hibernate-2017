@@ -1,0 +1,34 @@
+@CHARSET "UTF-8";
+
+#titulo {
+	text-align: center;
+}
+
+.form-group {
+	background-color: #696969;
+	border-radius: 2px;
+}
+
+.scheduler-border {
+	background-color: #696969;
+	border-radius: 2px;
+	text-align: center;
+	color: white;
+}
+
+.control-label {
+	text-align: right;
+}
+
+#form-error {
+	color: red;
+}
+
+.table-inverse {
+	background-color: #696969;
+	color: white;
+}
+
+.table-hover tr:hover td {
+	background-color: black;
+}

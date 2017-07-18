@@ -1,7 +1,7 @@
 package com.javaplenomarcosabreu.model;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,14 +15,17 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import org.springframework.stereotype.Component;
+
 @Entity
+@Component
 public class Empregado implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
@@ -35,15 +38,14 @@ public class Empregado implements Serializable {
 	@Size(min = 4, max = 30, message = "O endereço deve ter entre 4 e 30 caracteres.")
 	private String endereco;
 
-	@Column(nullable = false)
-	@Pattern(regexp = "^\\d{7}$", message = "Digite apenas os números do CPF.")
+	@Column(nullable = false, unique = true)
+	@Pattern(regexp = "^\\d{11}$", message = "Digite apenas os números do CPF.")
 	private String cpf;
-
-	@Column
+	
 	@ManyToOne(optional = false)
-	@JoinColumn(name = "fk_departamento", referencedColumnName = "id", nullable = false)
-	private String codDepartamento;
-
+	@JoinColumn(name = "fk_departamento", referencedColumnName = "id")	
+	private Departamento codDepartamento;
+		
 	@Column(nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataCadastro;
@@ -80,11 +82,11 @@ public class Empregado implements Serializable {
 		this.cpf = cpf;
 	}
 
-	public String getCodDepartamento() {
+	public Departamento getCodDepartamento() {
 		return codDepartamento;
 	}
 
-	public void setCodDepartamento(String codDepartamento) {
+	public void setCodDepartamento(Departamento codDepartamento) {
 		this.codDepartamento = codDepartamento;
 	}
 

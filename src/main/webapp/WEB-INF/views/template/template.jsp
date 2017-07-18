@@ -12,11 +12,12 @@
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <%-- <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/custom.css" />"> --%>    
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha/js/bootstrap.min.js"></script>
+    <link href="resources/css/custom.css" rel="stylesheet">    
         
   </head>
   <body>
-    <div class="container">
+    <div class="container-fluid">
     
         <div class="row">
             <div id="header">

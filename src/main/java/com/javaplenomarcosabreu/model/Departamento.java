@@ -11,7 +11,10 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Size;
 
+import org.springframework.stereotype.Component;
+
 @Entity
+@Component
 public class Departamento implements Serializable {
 
 	/**
@@ -23,8 +26,7 @@ public class Departamento implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 
-	@Column(nullable = false)
-	@Size(min = 4, max = 25, message = "O nome do departamento deve ter entre 4 e 25 caracteres.")
+	@Column(nullable = false, unique=true)	
 	private String nomeDepartamento;
 
 	@Column

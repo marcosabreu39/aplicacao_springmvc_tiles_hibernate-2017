@@ -23,5 +23,34 @@
 	</definition>
 
 
+<!-- cadastro --> 
+
+	<definition name="cadastro" template="/WEB-INF/views/template/template.jsp">
+
+		<put-attribute name="title" value="Página de Cadastro" />
+
+		<put-attribute name="nav" type="template" value="/WEB-INF/views/template/partes/nav.jsp" />		
+
+		<put-attribute name="body" type="template" value="/WEB-INF/views/public/cadastro.jsp" />
+
+		<put-attribute name="footer" type="template" value="/WEB-INF/views/template/partes/footer.jsp" />
+
+	</definition>
+
+
+<!-- sucesso --> 
+
+	<definition name="sucesso" template="/WEB-INF/views/template/template.jsp">
+
+		<put-attribute name="title" value="Página de operação bem sucedida" />
+
+		<put-attribute name="nav" type="template" value="/WEB-INF/views/template/partes/nav.jsp" />		
+
+		<put-attribute name="body" type="template" value="/WEB-INF/views/public/sucesso.jsp" />
+
+		<put-attribute name="footer" type="template" value="/WEB-INF/views/template/partes/footer.jsp" />
+
+	</definition>
+
 
 </tiles-definitions>      
