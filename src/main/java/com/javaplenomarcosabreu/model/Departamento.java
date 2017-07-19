@@ -25,6 +25,7 @@ public class Departamento implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column
 	private Integer id;
 
 	@Column(nullable = false, unique = true)

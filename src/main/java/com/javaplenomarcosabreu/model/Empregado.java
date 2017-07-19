@@ -2,7 +2,9 @@ package com.javaplenomarcosabreu.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -25,9 +28,10 @@ public class Empregado implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column
 	private Integer id;
 
 	@Column(nullable = false)
@@ -41,14 +45,42 @@ public class Empregado implements Serializable {
 	@Column(nullable = false, unique = true)
 	@Pattern(regexp = "^\\d{11}$", message = "Digite apenas os números do CPF.")
 	private String cpf;
-	
-	@ManyToOne(optional = false)
-	@JoinColumn(name = "fk_departamento", referencedColumnName = "id")	
-	private Departamento codDepartamento;
-		
+
 	@Column(nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataCadastro;
+
+	@Transient
+	private List<Departamento> departamentos;
+		
+	@JoinColumn(referencedColumnName = "id")
+	private String codDepartamento;
+	
+	private Departamento departamento;	
+	
+	public String getCodDepartamento() {
+		return codDepartamento;
+	}
+
+	public void setCodDepartamento(String codDepartamento) {
+		this.codDepartamento = codDepartamento;
+	}
+
+	public Departamento getDepartamento() {
+		return departamento;
+	}
+
+	public void setDepartamento(Departamento departamento) {
+		this.departamento = departamento;
+	}
+
+	public List<Departamento> getDepartamentos() {
+		return departamentos;
+	}
+
+	public void setDepartamentos(List<Departamento> departamentos) {
+		this.departamentos = departamentos;
+	}
 
 	public Integer getId() {
 		return id;
@@ -80,14 +112,6 @@ public class Empregado implements Serializable {
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
-	}
-
-	public Departamento getCodDepartamento() {
-		return codDepartamento;
-	}
-
-	public void setCodDepartamento(Departamento codDepartamento) {
-		this.codDepartamento = codDepartamento;
 	}
 
 	public Date getDataCadastro() {

@@ -55,7 +55,8 @@ public class DepartamentoDao implements Dao<Departamento> {
 
 		session = sessionFactory.openSession();
 
-		String hql = "SELECT D.nomeDepartamento FROM Departamento D";
+		/*String hql = "SELECT D.nomeDepartamento FROM Departamento D";*/
+		String hql = "FROM Departamento D";
 
 		Query query = session.createQuery(hql);
 
@@ -71,14 +72,16 @@ public class DepartamentoDao implements Dao<Departamento> {
 	public boolean checarDepartamento(String nome) throws Exception {
 
 		session = sessionFactory.openSession();
-
-		String hql = "SELECT D.nomeDepartamento FROM Departamento D";
+		
+		String hql = "FROM Departamento WHERE nomeDepartamento = :nomeDepartamento";
 
 		Query query = session.createQuery(hql);
+		
+		query.setParameter("nomeDepartamento", nome);
 
-		List<Departamento> departamentos = query.list();
+		List<Departamento> checking = query.list();
 
-		boolean existe = departamentos.isEmpty() ? false : true;
+		boolean existe = checking.isEmpty() ? false : true;
 
 		session.close();
 

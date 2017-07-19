@@ -18,19 +18,14 @@ public class DepartamentoController {
 	@Autowired
 	Dao<Departamento> departamentoDao;
 
-	/* @Autowired */
-	DepartamentoDao depDao = new DepartamentoDao();
+	@Autowired
+	DepartamentoDao depDao;
 
 	@RequestMapping(value = "/criar-departamento", method = RequestMethod.GET)
 	public ModelAndView criarDepartamento(Departamento departamento) {
 
 		try {
 			departamento.setDepartamentos(depDao.obterDepartamentos());
-
-			for (Departamento d : departamento.getDepartamentos()) {
-
-				System.out.println(d);
-			}
 
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
@@ -75,9 +70,7 @@ public class DepartamentoController {
 				mensagem = "Ocorreu um erro na criação do Departamento";
 
 				pagina.addObject("mensagem", mensagem);
-				
-				departamento = new Departamento();
-				
+								
 				departamento.setDepartamentos(depDao.obterDepartamentos());
 
 				pagina.addObject("departamento", departamento);
