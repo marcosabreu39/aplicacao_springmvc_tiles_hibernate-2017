@@ -32,3 +32,8 @@
 .table-hover tr:hover td {
 	background-color: black;
 }
+
+select#default{
+	background-color: black;
+	color: white;
+}

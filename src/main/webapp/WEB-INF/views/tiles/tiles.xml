@@ -53,4 +53,18 @@
 	</definition>
 
 
+<!-- criar-departamento --> 
+
+	<definition name="criar-departamento" template="/WEB-INF/views/template/template.jsp">
+
+		<put-attribute name="title" value="Página de controle de Departamentos" />
+
+		<put-attribute name="nav" type="template" value="/WEB-INF/views/template/partes/nav.jsp" />		
+
+		<put-attribute name="body" type="template" value="/WEB-INF/views/public/criar-departamento.jsp" />
+
+		<put-attribute name="footer" type="template" value="/WEB-INF/views/template/partes/footer.jsp" />
+
+	</definition>
+
 </tiles-definitions>      

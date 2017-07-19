@@ -9,10 +9,23 @@
 	
 <fieldset class="form-group">
 	
-	<legend class="scheduler-border">Cadastro de Empregados</legend>	
+	<legend class="scheduler-border">Cadastro de Empregados</legend>
 	
-<form:form method="post" action="${url}" commandName="empregado" commandName="departamento">	
+		
 	
+		<div class="form-group row">
+		<label class="col-sm-2 control-label"></label>
+		<div class="col-sm-5">
+		<form:select class="form control" path="departamento" items="${departamentos}"/>	
+		</div>
+		</div>
+		
+	
+	
+<form:form method="post" action="${url}" commandName="empregado">
+	
+	<form:hidden path="departamento" value="${departamento.id}" />	
+		
 	<div class="form-group row">
 		<label class="col-sm-2 control-label">Nome:</label>	
 		<div class="col-sm-5">	
@@ -43,15 +56,7 @@
 		</div>
 		</div>
 	
-		<div class="form-group row">
-		<label class="col-sm-2 control-label">Departamento:</label>	
-		<div class="col-sm-5">	
-		<form:input path="nomeDepartamento" type="text" class="form-control" placeholder="Insira o departamento que o usuário está alocado." />		
-		</div>
-		<div class="col-sm-4">
-		<form:errors path="nomeDepartamento" class="form-control" id="form-error" />
-		</div>
-		</div>
+		
 		
 		<div class="form-group row">
 		<label class="col-sm-2 control-label"></label>

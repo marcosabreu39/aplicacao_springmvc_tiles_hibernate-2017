@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 
 import org.springframework.stereotype.Component;
@@ -26,12 +27,26 @@ public class Departamento implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 
-	@Column(nullable = false, unique=true)	
+	@Column(nullable = false, unique = true)
+	@Size(min = 3, max = 25, message = "O nome do departamento deve ter entre 3 e 25 caracteres")
 	private String nomeDepartamento;
 
 	@Column
 	@OneToMany(targetEntity = Empregado.class)
-	public List<Empregado> empregados;
+	private List<Empregado> empregados;
+	
+	@Transient
+	private List<Departamento> departamentos;
+	
+	
+
+	public List<Departamento> getDepartamentos() {
+		return departamentos;
+	}
+
+	public void setDepartamentos(List<Departamento> departamentos) {
+		this.departamentos = departamentos;
+	}
 
 	public Integer getId() {
 		return id;
