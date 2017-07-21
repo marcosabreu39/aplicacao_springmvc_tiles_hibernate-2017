@@ -14,7 +14,7 @@
 		<div class="btn-group">
 		<form:select class="Dropdown-menu" path="departamento">
 		<form:option class="dropdown-item" value="NONE" label="Departamentos que já existem" cssClass="default" />
-		<form:options items="${departamento.departamentos}"/>
+		<form:options items="${departamento.departamentos}" itemLabel="nomeDepartamento" itemValue="id" />
 		</form:select> 	
 		</div>
 		</div>

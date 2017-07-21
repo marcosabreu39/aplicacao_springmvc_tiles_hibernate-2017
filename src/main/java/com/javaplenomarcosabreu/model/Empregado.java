@@ -2,7 +2,6 @@ package com.javaplenomarcosabreu.model;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -46,23 +45,22 @@ public class Empregado implements Serializable {
 	@Pattern(regexp = "^\\d{11}$", message = "Digite apenas os números do CPF.")
 	private String cpf;
 
-	@Column(nullable = false)
+	@Column
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataCadastro;
-
-	@Transient
-	private List<Departamento> departamentos;
-		
-	@JoinColumn(referencedColumnName = "id")
-	private String codDepartamento;
 	
+	@ManyToOne
+	@JoinColumn(referencedColumnName = "id")
+	private Departamento codDepartamento;
+	
+	@Transient
 	private Departamento departamento;	
 	
-	public String getCodDepartamento() {
+	public Departamento getCodDepartamento() {
 		return codDepartamento;
 	}
 
-	public void setCodDepartamento(String codDepartamento) {
+	public void setCodDepartamento(Departamento codDepartamento) {
 		this.codDepartamento = codDepartamento;
 	}
 
@@ -72,14 +70,6 @@ public class Empregado implements Serializable {
 
 	public void setDepartamento(Departamento departamento) {
 		this.departamento = departamento;
-	}
-
-	public List<Departamento> getDepartamentos() {
-		return departamentos;
-	}
-
-	public void setDepartamentos(List<Departamento> departamentos) {
-		this.departamentos = departamentos;
 	}
 
 	public Integer getId() {

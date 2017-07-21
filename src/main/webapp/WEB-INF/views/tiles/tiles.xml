@@ -67,4 +67,78 @@
 
 	</definition>
 
+
+<!-- selecionar-depto --> 
+
+	<definition name="selecionar-depto" template="/WEB-INF/views/template/template.jsp">
+
+		<put-attribute name="title" value="Página de seleção de departamento" />
+
+		<put-attribute name="nav" type="template" value="/WEB-INF/views/template/partes/nav.jsp" />		
+
+		<put-attribute name="body" type="template" value="/WEB-INF/views/public/selecionar-depto.jsp" />
+
+		<put-attribute name="footer" type="template" value="/WEB-INF/views/template/partes/footer.jsp" />
+
+	</definition>
+	
+	
+	<!-- atualizar-dados --> 
+
+	<definition name="atualizar-dados" template="/WEB-INF/views/template/template.jsp">
+
+		<put-attribute name="title" value="Página de atualização de dados" />
+
+		<put-attribute name="nav" type="template" value="/WEB-INF/views/template/partes/nav.jsp" />		
+
+		<put-attribute name="body" type="template" value="/WEB-INF/views/public/atualizar-dados.jsp" />
+
+		<put-attribute name="footer" type="template" value="/WEB-INF/views/template/partes/footer.jsp" />
+
+	</definition>
+	
+	
+	<!-- listar-empregados --> 
+
+	<definition name="listar-empregados" template="/WEB-INF/views/template/template.jsp">
+
+		<put-attribute name="title" value="Página de busca de empregados" />
+
+		<put-attribute name="nav" type="template" value="/WEB-INF/views/template/partes/nav.jsp" />		
+
+		<put-attribute name="body" type="template" value="/WEB-INF/views/public/listar-empregados.jsp" />
+
+		<put-attribute name="footer" type="template" value="/WEB-INF/views/template/partes/footer.jsp" />
+
+	</definition>
+	
+	
+	<!-- exibir-empregado --> 
+
+	<definition name="exibir-empregado" template="/WEB-INF/views/template/template.jsp">
+
+		<put-attribute name="title" value="Página de dados do empregado" />
+
+		<put-attribute name="nav" type="template" value="/WEB-INF/views/template/partes/nav.jsp" />		
+
+		<put-attribute name="body" type="template" value="/WEB-INF/views/public/exibir-empregado.jsp" />
+
+		<put-attribute name="footer" type="template" value="/WEB-INF/views/template/partes/footer.jsp" />
+
+	</definition>
+	
+	<!-- atualizar-empregado --> 
+
+	<definition name="atualizar-empregado" template="/WEB-INF/views/template/template.jsp">
+
+		<put-attribute name="title" value="Página de atualização dados do empregado" />
+
+		<put-attribute name="nav" type="template" value="/WEB-INF/views/template/partes/nav.jsp" />		
+
+		<put-attribute name="body" type="template" value="/WEB-INF/views/public/atualizar-empregado.jsp" />
+
+		<put-attribute name="footer" type="template" value="/WEB-INF/views/template/partes/footer.jsp" />
+
+	</definition>
+
 </tiles-definitions>      

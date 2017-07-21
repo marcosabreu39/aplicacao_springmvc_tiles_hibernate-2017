@@ -7,11 +7,11 @@
 
 <h3 id="titulo">${mensagem}</h3>	
 	
-<c:url value="/cadastro" var="url" />
+<c:url value="/atualizar-dados/listar-empregados/listar-selecionado/atualizar-empregado/concluir" var="url" />
 	
 <fieldset class="form-group">
 	
-<legend class="scheduler-border">Cadastro de Empregados</legend>
+<legend class="scheduler-border">Atualização de Cadastro de Empregados</legend>
 	
 <form:form method="post" action="${url}" commandName="empregado">
 				
@@ -48,7 +48,7 @@
 		<div class="form-group row">
 		<label class="col-sm-2 control-label"></label>
 		<div class="col-sm-5">
-		<button type="submit" class="btn btn-default">Cadastrar o novo empregado</button>	
+		<button type="submit" class="btn btn-default">Atualizar os dados do empregado</button>	
 		</div>
 		</div>		
 			

@@ -1,8 +1,10 @@
 package com.javaplenomarcosabreu.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -33,13 +35,14 @@ public class Departamento implements Serializable {
 	private String nomeDepartamento;
 
 	@Column
-	@OneToMany(targetEntity = Empregado.class)
-	private List<Empregado> empregados;
+	@OneToMany(cascade=CascadeType.ALL)
+	private List<Empregado> empregados = new ArrayList<>();
 	
 	@Transient
-	private List<Departamento> departamentos;
+	private List<Departamento> departamentos = new ArrayList<>();
 	
-	
+	@Transient
+	private Departamento departamento;
 
 	public List<Departamento> getDepartamentos() {
 		return departamentos;
@@ -71,6 +74,14 @@ public class Departamento implements Serializable {
 
 	public void setEmpregados(List<Empregado> empregados) {
 		this.empregados = empregados;
+	}
+	
+	public Departamento getDepartamento() {
+		return departamento;
+	}
+
+	public void setDepartamento(Departamento departamento) {
+		this.departamento = departamento;
 	}
 
 }

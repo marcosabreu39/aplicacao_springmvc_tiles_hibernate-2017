@@ -18,7 +18,17 @@
       	<c:set var="ativo" value="${pagina == 'index' ? 'active' : ''}"></c:set>            
         <li class="${ativo}"><a href="<c:url value="/"/>"><i class="glyphicons glyphicons-home"></i>Home</a></li>
         <c:set var="ativo" value="${pagina == 'cadastro' ? 'active' : ''}"></c:set>
-        <li class="${ativo}"><a href="<c:url value="/cadastro"/>">Cadastro</a></li>        
+        <li class="${ativo}"><a href="<c:url value="/cadastro"/>">Cadastrar Empregado</a></li>        
+      </ul>
+      <ul class="nav navbar-nav navbar-left">        
+        <li class="dropdown">
+        <c:set var="ativo" value="${pagina == 'departamento' ? 'active' : ''}"></c:set>        
+          <a href="#" class="dropdown-toggle ${ativo}" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Empregado<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="<c:url value="/atualizar-dados"/>">Atualizar Dados Cadastrais</a></li>                     
+            
+          </ul>
+        </li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">        
@@ -26,11 +36,9 @@
         <c:set var="ativo" value="${pagina == 'departamento' ? 'active' : ''}"></c:set>        
           <a href="#" class="dropdown-toggle ${ativo}" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Departamento<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="<c:url value="/criar-departamento"/>">Criar Departamento</a></li>
-            <li><a href="#">Listar Empregados de um Departamento</a></li>
-            <li><a href="#">Listar todos os Departamentos</a></li>
+            <li><a href="<c:url value="/criar-departamento"/>">Criar Departamento</a></li>       
             <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
+            
           </ul>
         </li>
       </ul>
