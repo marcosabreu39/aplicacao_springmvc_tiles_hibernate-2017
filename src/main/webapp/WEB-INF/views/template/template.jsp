@@ -1,5 +1,6 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -9,13 +10,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
    
     <title><tiles:getAsString name="title"/></title>
+    
+    <!-- jquery -->
+    <spring:url value="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" var="urlJquery"/>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    <!-- Bootstrap -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha/js/bootstrap.min.js"></script>    
-    <link href="resources/css/custom.css" rel="stylesheet">    
-        
+    <!-- Bootstrap -->      
+    <spring:url value="/resources/bootstrap-3.3.7/dist/css/bootstrap.css" var="urlBoostrapCss" />               
+    <link href="${urlBoostrapCss}" rel="stylesheet">
+    
+    <!-- css -->
+    <spring:url value="/resources/css/custom.css" var="urlCss" />        
+    <link href="${urlCss}" rel="stylesheet">
+            
   </head>
   <body>
     <div class="container-fluid">

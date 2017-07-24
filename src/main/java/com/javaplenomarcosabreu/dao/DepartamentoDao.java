@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.junit.Test;
 import org.springframework.stereotype.Repository;
 
 import com.javaplenomarcosabreu.config.HibernateUtil;
@@ -29,7 +30,11 @@ public class DepartamentoDao implements Dao<Departamento> {
 
 	@Override
 	public void merge(Departamento departamento) throws Exception {
-		// TODO Auto-generated method stub
+		session = sessionFactory.openSession();
+		session.beginTransaction();
+		session.merge(departamento);
+		session.getTransaction().commit();
+		session.close();
 
 	}
 
@@ -63,8 +68,7 @@ public class DepartamentoDao implements Dao<Departamento> {
 	public List<Departamento> obterDepartamentos() throws Exception {
 
 		session = sessionFactory.openSession();
-
-		/*String hql = "SELECT D.nomeDepartamento FROM Departamento D";*/
+		
 		String hql = "FROM Departamento D";
 
 		Query query = session.createQuery(hql);
@@ -124,5 +128,62 @@ public class DepartamentoDao implements Dao<Departamento> {
 		return departamento ;
 
 	}
+	
+	public List<Departamento> buscarDepartamentosOcupados() throws Exception {
+		
+		session = sessionFactory.openSession();
+		
+		String hql = "SELECT DISTINCT d From Departamento d, Empregado e WHERE d.id = e.codDepartamento";
+		
+		Query query = session.createQuery(hql);
 
+		@SuppressWarnings("unchecked")
+		List<Departamento> departamentos = query.list();
+
+		session.close();
+		
+		return departamentos;
+		
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Long> obterDeptosVazios() throws Exception {
+		
+		session = sessionFactory.openSession();
+				
+		String hql = "SELECT COUNT(*) FROM Departamento d WHERE d.id NOT IN "
+				+ "(SELECT DISTINCT d From Departamento d, Empregado e WHERE d.id = e.codDepartamento)";
+		
+		Query query = session.createQuery(hql);
+					 
+		List<Long> result = query.list();
+		
+		session.close();
+		
+		return result;
+		
+	}
+	
+	@SuppressWarnings("unchecked")
+	public Long contarDepartamentos() throws Exception {
+
+		session = sessionFactory.openSession();
+		
+		String hql = "SELECT COUNT(*) FROM Departamento D";
+
+		Query query = session.createQuery(hql);
+
+		List<Long> totalDeptos = query.list();
+
+		long total = 0;
+		
+		for (Long totaldeps : totalDeptos) {
+			total = totaldeps;
+		}
+		
+		session.close();
+		
+		return total;
+
+	}
 }

@@ -8,7 +8,7 @@ import junit.framework.Assert;
 
 public class AuxiliarTest {
 
-	@SuppressWarnings("deprecation")
+	/*@SuppressWarnings("deprecation")
 	@Test
 	public void testGerarDataEhoraAtual() {
 		Auxiliar aux = new Auxiliar();
@@ -19,5 +19,5 @@ public class AuxiliarTest {
 			e.printStackTrace();
 		}
 	}
-
+*/
 }

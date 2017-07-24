@@ -3,11 +3,11 @@ package com.javaplenomarcosabreu.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -42,7 +42,7 @@ public class EmpregadoController {
 	EmpregadoDao empregadoDao;
 
 	@RequestMapping(value = "/cadastro", method = RequestMethod.GET)
-	public ModelAndView cadastro(Empregado empregado, ModelMap modelMap) {
+	public ModelAndView cadastro(@ModelAttribute Empregado empregado) {
 
 		ModelAndView pagina = new ModelAndView("cadastro");
 
@@ -61,8 +61,8 @@ public class EmpregadoController {
 	}
 
 	@RequestMapping(value = "/cadastro", method = RequestMethod.POST)
-	public ModelAndView cadastrar(@Valid @ModelAttribute Empregado empregado, @Valid Departamento departamento,
-			BindingResult result, Model model, RedirectAttributes redirectAttributes) {
+	public ModelAndView cadastrar(@Valid Empregado empregado, BindingResult result,
+			RedirectAttributes redirectAttributes) {
 
 		ModelAndView pagina = null;
 
@@ -76,12 +76,18 @@ public class EmpregadoController {
 
 				pagina.addObject("mensagem", "Erro ao se tentar cadastrar o empregado");
 
-			} else {
-
-				empregadoDao = new EmpregadoDao();
-
-				/* empregadoDao.persist(empregado); */
-
+			} else if(empregadoDao.empregadoJaCadastrado(empregado.getCpf())) {
+				
+				result.rejectValue("cpf", "error.empregado", "Empregado já cadastrado");
+				
+				pagina = new ModelAndView("cadastro");
+				
+				pagina.addObject("mensagem", "Erro erro ao se tentar cadastrar o empregado");
+				
+				pagina.addObject("pagina", "cadastro");
+				
+			} else {			
+				
 				redirectAttributes.addFlashAttribute("empregado", empregado);
 
 				redirectAttributes.addFlashAttribute("departamento", departamento);
@@ -98,18 +104,20 @@ public class EmpregadoController {
 	}
 
 	@RequestMapping(value = "/atualizar-dados", method = RequestMethod.GET)
-	public ModelAndView atualizarDados(@ModelAttribute Departamento departamento) {
+	public ModelAndView atualizarDados(@ModelAttribute Departamento departamento, HttpSession session) {
 
 		ModelAndView pagina = null;
 
 		try {
 
-			List<Departamento> departamentos = new ArrayList<>(depDao.obterDepartamentos());
+			List<Departamento> departamentos = new ArrayList<>(depDao.buscarDepartamentosOcupados());
 
+			session.setAttribute("departamentos", departamentos);
+			
 			pagina = new ModelAndView("atualizar-dados");
 
-			pagina.addObject("departamentos", departamentos);
-
+			pagina.addObject("pagina", "dados");
+			
 			pagina.addObject("mensagem", "Página de atualização de dados cadastrais");
 
 		} catch (Exception e) {
@@ -119,33 +127,35 @@ public class EmpregadoController {
 		return pagina;
 
 	}
-
+	
 	@RequestMapping(value = "/atualizar-dados/listar-empregados", method = RequestMethod.POST)
 	public ModelAndView listarEmpregadosDepto(@Valid Departamento departamento, BindingResult result,
-			@ModelAttribute Empregado empregado) {
+			@ModelAttribute Empregado empregado, HttpSession session) {
 
 		ModelAndView pagina = null;
 
 		try {
+			
+			if (result.hasErrors() || departamento.getId() == null || departamento.getId().equals("")) {
 
-			if (result.hasErrors()) {
-
-				List<Departamento> departamentos = new ArrayList<>(depDao.obterDepartamentos());
-
+				result.rejectValue("id", "error.departamento", "Nenhum departamento foi selecionado");
+				
 				pagina = new ModelAndView("atualizar-dados");
-
-				pagina.addObject("departamentos", departamentos);
-
+				
 				pagina.addObject("mensagem", "Ocorreu um erro na busca dos empregados");
+				
+				pagina.addObject("pagina", "dados");
 
 			} else {
 
-				List<Empregado> empregados = empregadoDao.buscarEmpregados(departamento);
+				List<Empregado>empregados = empregadoDao.buscarEmpregados(departamento);
 
 				pagina = new ModelAndView("listar-empregados");
 
-				pagina.addObject("empregados", empregados);
-
+				session.setAttribute("empregados", empregados);
+				
+				pagina.addObject("pagina", "dados");
+				
 				pagina.addObject("mensagem", "Página de busca de empregados");
 
 			}
@@ -159,35 +169,39 @@ public class EmpregadoController {
 	}
 
 	@RequestMapping(value = "/atualizar-dados/listar-empregados/listar-selecionado", method = RequestMethod.POST)
-	public ModelAndView listarDadosEmpregado(@Valid @ModelAttribute Empregado empregado, BindingResult result) {
+	public ModelAndView listarDadosEmpregado(@Valid Empregado empregado, BindingResult result, HttpSession session) {
 
 		ModelAndView pagina = null;
 
 		try {
 
-			if (result.hasErrors()) {
+			if (result.hasErrors() || empregado.getCpf() == null || empregado.getCpf().equals("")) {
 
+				result.rejectValue("cpf", "error.empregado", "Nenhum empregado foi selecionado");
+				
 				pagina = new ModelAndView("listar-empregados");
+				
+				pagina.addObject("mensagem", "Erro ao tentar exibir os dados do empregado");
+				
+				pagina.addObject("pagina", "dados");				
 
-				List<Empregado> empregados = empregadoDao.buscarEmpregados(departamento);
+			} else {
+				
+				pagina = new ModelAndView("exibir-empregado");
 
-				pagina.addObject("empregados", empregados);
+				empregado = empregadoDao.buscarEmpregadoViaCpf(empregado.getCpf());
 
-				pagina.addObject("mensagem", "Ocorreu um erro para listar os empregados");
+				pagina.addObject("empregado", empregado);
 
-			}
+				Departamento departamento = depDao.buscarDepartamento(empregado.getCodDepartamento().getId());
 
-			pagina = new ModelAndView("exibir-empregado");
+				pagina.addObject("departamento", departamento);
 
-			empregado = empregadoDao.buscarEmpregadoViaCpf(empregado.getCpf());
-
-			pagina.addObject("empregado", empregado);
-
-			Departamento departamento = depDao.buscarDepartamento(empregado.getCodDepartamento().getId());
-
-			pagina.addObject("departamento", departamento);
-
-			pagina.addObject("mensagem", "Dados do empregado selecionado");
+				pagina.addObject("mensagem", "Página com os dados do empregado selecionado");	
+				
+				pagina.addObject("pagina", "dados");
+				
+			}			
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -209,6 +223,8 @@ public class EmpregadoController {
 				pagina = new ModelAndView("exibir-empregado");
 
 				pagina.addObject("mensagem", "ocorreu um erro para remover os dados do empregado");
+				
+				pagina.addObject("pagina", "dados");
 
 			} else {
 
@@ -237,7 +253,7 @@ public class EmpregadoController {
 	}
 
 	@RequestMapping(value = "/atualizar-dados/listar-empregados/listar-selecionado/atualizar-empregado", method = RequestMethod.POST)
-	public ModelAndView atualizarEmpregado(@Valid @ModelAttribute Empregado empregado, BindingResult result) {
+	public ModelAndView atualizarEmpregado(@Valid @ModelAttribute Empregado empregado, BindingResult result, HttpSession session) {
 
 		ModelAndView pagina = null;
 
@@ -248,6 +264,8 @@ public class EmpregadoController {
 				pagina = new ModelAndView("exibir-empregado");
 
 				pagina.addObject("mensagem", "Ocorreu um erro no momento de obter os dados para atualizar");
+				
+				pagina.addObject("pagina", "dados");
 
 			} else {
 
@@ -256,8 +274,12 @@ public class EmpregadoController {
 				pagina.addObject("mensagem", "Página de atualização de dados cadastrais");
 
 				empregado = empregadoDao.buscarEmpregadoViaCpf(empregado.getCpf());
-
+				
+				session.setAttribute("empregadoBD", empregado);
+				
 				pagina.addObject("empregado", empregado);
+				
+				pagina.addObject("pagina", "dados");
 			}
 
 		} catch (Exception e) {
@@ -268,8 +290,9 @@ public class EmpregadoController {
 
 	}
 
+	@SuppressWarnings("unused")
 	@RequestMapping(value = "/atualizar-dados/listar-empregados/listar-selecionado/atualizar-empregado/concluir", method = RequestMethod.POST)
-	public ModelAndView atualizarDadosEmpregado(@Valid Empregado empregado, BindingResult result) {
+	public ModelAndView atualizarDadosEmpregado(@Valid Empregado empregado, BindingResult result, HttpSession session) {
 
 		ModelAndView pagina = null;
 
@@ -282,9 +305,19 @@ public class EmpregadoController {
 				pagina.addObject("mensagem", "Ocorreu um erro para atualizar os dados do empregado");
 
 			} else {
-
+								
+				Object empregadoObj = session.getAttribute("empregadoBD");
+				
+				Empregado empregadoBefore = (Empregado)empregadoObj;
+				
+				empregado.setId(empregadoBefore.getId());
+				
+				empregado.setDataCadastro(empregadoBefore.getDataCadastro());
+				
+				empregado.setCodDepartamento(empregadoBefore.getCodDepartamento());
+				
 				empregadoDao.merge(empregado); 
-
+				
 				pagina = new ModelAndView("sucesso");
 
 				pagina.addObject("mensagem", "Atualização cadastral realizada com sucesso");

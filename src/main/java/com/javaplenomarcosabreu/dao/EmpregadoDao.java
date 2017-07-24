@@ -121,4 +121,77 @@ public class EmpregadoDao implements Dao<Empregado> {
 
 	}
 	
+	@SuppressWarnings("unchecked")
+	public boolean empregadoJaCadastrado(String cpf) throws Exception {
+
+		session = sessionFactory.openSession();
+		
+		String hql = "FROM Empregado WHERE cpf = :cpf";
+
+		Query query = session.createQuery(hql);
+		
+		query.setParameter("cpf", cpf);
+
+		List<Empregado> checking = query.list();
+
+		boolean cadastrado = checking.isEmpty() ? false : true;
+
+		session.close();
+		
+		return cadastrado;
+
+	}
+		
+	public Integer obterCodDepartamento(String cpf) throws Exception {
+		
+		session = sessionFactory.openSession();
+		
+		String hql = "SELECT codDepartamento From Empregado e WHERE cpf = :cpf";
+		
+		Query query = session.createQuery(hql);
+
+		query.setParameter("cpf", cpf);
+		
+		@SuppressWarnings("unchecked")
+		List<Departamento> deptos = query.list();
+		
+		Integer id = null;
+		
+		Departamento depto = null;
+		
+		for(Departamento d : deptos){
+			depto = d;
+		}
+		
+		id = depto.getId();
+		
+		session.close();
+		
+		return id;
+		
+	}
+	
+	@SuppressWarnings("unchecked")
+	public Long contarTodosOsEmpregados() throws Exception {
+
+		session = sessionFactory.openSession();
+		
+		String hql = "SELECT COUNT(*) FROM Empregado e";
+
+		Query query = session.createQuery(hql);
+
+		List<Long> result = query.list();
+
+		long total = 0;
+		
+		for (Long res : result) {
+			total = res;
+		}
+		
+		session.close();
+	
+		return total;
+
+	}
+	
 }

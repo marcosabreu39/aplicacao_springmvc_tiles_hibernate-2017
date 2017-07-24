@@ -18,28 +18,15 @@
       	<c:set var="ativo" value="${pagina == 'index' ? 'active' : ''}"></c:set>            
         <li class="${ativo}"><a href="<c:url value="/"/>"><i class="glyphicons glyphicons-home"></i>Home</a></li>
         <c:set var="ativo" value="${pagina == 'cadastro' ? 'active' : ''}"></c:set>
-        <li class="${ativo}"><a href="<c:url value="/cadastro"/>">Cadastrar Empregado</a></li>        
-      </ul>
-      <ul class="nav navbar-nav navbar-left">        
-        <li class="dropdown">
-        <c:set var="ativo" value="${pagina == 'departamento' ? 'active' : ''}"></c:set>        
-          <a href="#" class="dropdown-toggle ${ativo}" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Empregado<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="<c:url value="/atualizar-dados"/>">Atualizar Dados Cadastrais</a></li>                     
-            
-          </ul>
-        </li>
-      </ul>
+        <li class="${ativo}"><a href="<c:url value="/cadastro"/>">Cadastrar Empregado</a></li>
+        <c:set var="ativo" value="${pagina == 'dados' ? 'active' : ''}"></c:set>
+        <li class="${ativo}"><a href="<c:url value="/atualizar-dados"/>">Atualizar dados</a></li>        
+      </ul>      
       
       <ul class="nav navbar-nav navbar-right">        
         <li class="dropdown">
-        <c:set var="ativo" value="${pagina == 'departamento' ? 'active' : ''}"></c:set>        
-          <a href="#" class="dropdown-toggle ${ativo}" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Departamento<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="<c:url value="/criar-departamento"/>">Criar Departamento</a></li>       
-            <li role="separator" class="divider"></li>
-            
-          </ul>
+        <c:set var="ativo" value="${pagina == 'departamento' ? 'active' : ''}"></c:set>
+        <li class="${ativo}"><a href="<c:url value="/criar-departamento"/>">Criar Departamento</a></li>        
         </li>
       </ul>
     </div><!-- /.navbar-collapse -->

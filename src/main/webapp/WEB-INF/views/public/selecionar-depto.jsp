@@ -2,8 +2,13 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ page isELIgnored="false" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
-<h3 id="titulo">${mensagem}</h3>
+<c:if test="${fn:contains(mensagem, 'erro')}">			
+			<c:set var="cor" value="color: red;"/>
+			</c:if>
+
+<h3 id="titulo" style="${cor}">${mensagem}</h3>>
 
 <c:url value="/cadastro/selecionar-depto/concluir" var="url" />
 
@@ -13,19 +18,19 @@
 
 <div style="text-align: center">
 
+<c:set var="empregado" value="${empregado}" scope="session"/>
+
 <table class="table table-inverse table-hover">
 
-<%-- <c:forEach items="${empregados}" var="empregado"></c:forEach> --%>
-
-	<tr>
+	<tr scope="row">
 		<td>Nome:</td>
 		<td>${empregado.nome}</td>
 	</tr>
-	<tr>
+	<tr scope="row">
 		<td>Endereço:</td>
 		<td>${empregado.endereco}</td>
 	</tr>
-	<tr>
+	<tr scope="row">
 		<td>CPF:</td>
 		<td>${empregado.cpf}</td>
 	</tr>
@@ -35,25 +40,28 @@
 </div>
 
 <form:form method="post" action="${url}" commandName="departamento">
-
+	
 	<div class="form-group row">
-		<label class="col-sm-2 control-label"></label>
-		<div class="col-sm-5">
-		<div class="btn-group">
-		<form:select class="Dropdown-menu" path="id" id="id">
-			<form:option class="dropdown-item" value="NONE" label="Selecione o departamento aonde o empregado ficará alocado" cssClass="default" />
+		<label class="col-sm-3 control-label"></label>
+		<div class="col-sm-4">
+		<div class="btn-group">		
+		<form:select cssClass="form-control" path="id">
+			<form:option value="" selected="true" disabled="true" readonly="true" label="Selecione o departamento do empregado" cssStyle="display: none;" />
 			<form:options items="${departamentos}"  itemLabel="nomeDepartamento" itemValue="id"  />		
 		</form:select>				
 		</div>
 		</div>
-		<div class="col-sm-1">
+		<label class="col-sm-3 control-label"></label>
+		<div class="col-sm-4">
 		
-		<button type="submit" class="btn btn-default">Finalizar o Cadastro</button>
+		<button type="submit" class="btn btn-default">Finalizar Cadastro</button>
 		</div>
+		<label class="col-sm-3 control-label"></label>
 		<div class="col-sm-4">
 		<form:errors path="id" id="form-error" class="form-control" />		
 		</div>
 	</div>	
+		
 </form:form>
 
 </fieldset>

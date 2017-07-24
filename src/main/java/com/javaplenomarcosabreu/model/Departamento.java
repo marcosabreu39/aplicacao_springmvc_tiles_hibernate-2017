@@ -31,7 +31,7 @@ public class Departamento implements Serializable {
 	private Integer id;
 
 	@Column(nullable = false, unique = true)
-	@Size(min = 3, max = 25, message = "O nome do departamento deve ter entre 3 e 25 caracteres")
+	@Size(min = 3, max = 25, message = "O nome deve ter entre 3 e 25 caracteres")
 	private String nomeDepartamento;
 
 	@Column
@@ -41,8 +41,8 @@ public class Departamento implements Serializable {
 	@Transient
 	private List<Departamento> departamentos = new ArrayList<>();
 	
-	@Transient
-	private Departamento departamento;
+	/*@Transient
+	private Departamento departamento;*/
 
 	public List<Departamento> getDepartamentos() {
 		return departamentos;
@@ -76,12 +76,12 @@ public class Departamento implements Serializable {
 		this.empregados = empregados;
 	}
 	
-	public Departamento getDepartamento() {
+	/*public Departamento getDepartamento() {
 		return departamento;
 	}
 
 	public void setDepartamento(Departamento departamento) {
 		this.departamento = departamento;
 	}
-
+*/
 }

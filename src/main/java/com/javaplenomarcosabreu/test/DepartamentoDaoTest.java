@@ -1,5 +1,7 @@
 package com.javaplenomarcosabreu.test;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
 
 import com.javaplenomarcosabreu.dao.DepartamentoDao;
@@ -8,19 +10,37 @@ import junit.framework.Assert;
 
 public class DepartamentoDaoTest {
 
-	@SuppressWarnings("deprecation")
+	DepartamentoDao departamentoDao = new DepartamentoDao();
+	
+	/*@SuppressWarnings("deprecation")
 	@Test
-	public void testDepartamentos() {
-		
-		
-		DepartamentoDao departamentoDao = new DepartamentoDao();
+	public int testDadosDeptos() {		
 		
 		try {
-			Assert.assertEquals("vendas", departamentoDao.obterDepartamentos());
+			Assert.assertEquals("5", departamentoDao.obterDadosDeptos());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
+		return 0;
+	}*/
 
-}
+	/*@SuppressWarnings("deprecation")
+	@Test
+	public void obterDadosDeptosTest(){
+		
+			
+		try {
+			 			 
+			 Assert.assertEquals(1, departamentoDao.obterDadosDeptos());
+			 
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+			
+	}*/
+		
+	}
+	
+

@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-<h3 id="titulo">${mensagem}</h3>
+<h3 id="titulo" style="color: green;">${mensagem}</h3>
 
 <fieldset class="form-group">
 	
@@ -43,8 +43,12 @@
 	
 	</c:if>
 	
-	
-
 </table>
 </div>
 </fieldset>
+
+<script> 
+document.write="Preparando...";
+window.setTimeout("location.href='/JavaPlenoMarcosAbreu/'",3000)
+
+</script>
