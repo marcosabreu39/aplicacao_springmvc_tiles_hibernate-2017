@@ -1,29 +1,9 @@
-# README #
+Tecnologias utilizadas no projeto:
 
-This README would normally document whatever steps are necessary to get your application up and running.
+-Arquitetura MVC;
 
-### What is this repository for? ###
+-Model com os design patterns Dao e Template com o framework hibernate 5 e o banco de dados Oracle 11g;
 
-* Desafio da empresa Mobicare
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+-View utilizando os frameworks Apache Tiles para o template e Bootstrap para o design;
 
-### How do I get set up? ###
-
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+-Controller utilizando o framework Spring MVC 4, que utiliza o design pattern Front Controller;
