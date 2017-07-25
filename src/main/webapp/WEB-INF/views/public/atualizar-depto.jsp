@@ -4,11 +4,19 @@
 <%@ page isELIgnored="false" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
-<c:if test="${fn:contains(mensagem, 'erro')}">			
-			<c:set var="cor" value="color: red;"/>
-			</c:if>
-
-<h3 id="titulo" style="${cor}">${mensagem}</h3>>
+<c:choose>
+ <c:when test="${fn:contains(mensagem, 'Erro')}">
+ <c:set var="classe" value="alert alert-danger"/>  
+ </c:when>
+ 
+ <c:otherwise>
+ <c:set var="classe" value="text-info"/>
+ </c:otherwise> 
+  </c:choose>
+  
+ <div class="${classe}" role="alert">
+ <h3 id="titulo">${mensagem}</h3>
+ </div>
 
 <c:url value="/atualizar-dados/listar-empregados/listar-selecionado/atualizar-depto/concluir" var="url" />
 
@@ -18,7 +26,7 @@
 
 <div style="text-align: center">
 
-<c:set var="empregado" value="${empregado }" scope="session"/>
+<c:set var="empregado" value="${empregado}" scope="session"/>
 
 <table class="table table-inverse table-hover">
 
@@ -45,7 +53,7 @@
 		<label class="col-sm-3 control-label"></label>
 		<div class="col-sm-4">
 		<div class="btn-group">		
-		<form:select cssClass="form-control" path="id">
+		<form:select cssClass="form-control" path="id" id="exampleSelect1">
 			<form:option value="" selected="true" disabled="true" readonly="true" label="Selecione o departamento do empregado" cssStyle="display: none;" />
 			<form:options items="${departamentos}"  itemLabel="nomeDepartamento" itemValue="id"  />		
 		</form:select>				
@@ -58,7 +66,7 @@
 		</div>
 		<label class="col-sm-3 control-label"></label>
 		<div class="col-sm-4">
-		<form:errors path="id" id="form-error" class="form-control" />		
+		<form:errors path="id" class="form-control alert alert-danger" />		
 		</div>
 	</div>	
 		

@@ -20,7 +20,7 @@
         <c:set var="ativo" value="${pagina == 'cadastro' ? 'active' : ''}"></c:set>
         <li class="${ativo}"><a href="<c:url value="/cadastro"/>">Cadastrar Empregado</a></li>
         <c:set var="ativo" value="${pagina == 'dados' ? 'active' : ''}"></c:set>
-        <li class="${ativo}"><a href="<c:url value="/atualizar-dados"/>">Atualizar dados</a></li>        
+        <li class="${ativo}"><a href="<c:url value="/atualizar-dados"/>">Atualizar Dados</a></li>        
       </ul>      
       
       <ul class="nav navbar-nav navbar-right">        

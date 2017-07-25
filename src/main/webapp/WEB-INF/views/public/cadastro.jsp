@@ -4,12 +4,20 @@
 <%@ page isELIgnored="false" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
-<c:if test="${fn:contains(mensagem, 'Erro')}">			
-			<c:set var="cor" value="color: red;"/>
-			</c:if>
-
-<h3 id="titulo" style="${cor}">${mensagem}</h3>>
-
+ <c:choose>
+ <c:when test="${fn:contains(mensagem, 'Erro')}">
+ <c:set var="classe" value="alert alert-danger"/>  
+ </c:when>
+ 
+ <c:otherwise>
+ <c:set var="classe" value="text-info"/>
+ </c:otherwise> 
+  </c:choose>
+  
+ <div class="${classe}" role="alert">
+ <h3 id="titulo">${mensagem}</h3>
+ </div>
+ 
 <div>
 
 <c:url value="/cadastro" var="url" />
@@ -26,7 +34,7 @@
 		<form:input path="nome" type="text" class="form-control" placeholder="Insira o nome do empregado." />		
 		</div>
 		<div class="col-sm-4">
-		<form:errors path="nome" id="form-error" class="form-control" />		
+		<form:errors path="nome" class="form-control alert alert-danger" />		
 		</div>
 	</div>
 		
@@ -36,7 +44,7 @@
 		<form:input path="endereco" type="text" class="form-control" placeholder="Insira o endereço do empregado." />		
 		</div>
 		<div class="col-sm-4">
-		<form:errors path="endereco" id="form-error" class="form-control" />		
+		<form:errors path="endereco" class="form-control alert alert-danger" />		
 		</div>
 		</div>
 				
@@ -46,7 +54,7 @@
 		<form:input path="cpf" type="text" class="form-control" placeholder="Insira o CPF do empregado." />			
 		</div>
 		<div class="col-sm-4">
-		<form:errors path="cpf" class="form-control" id="form-error" />		
+		<form:errors path="cpf"class="form-control alert alert-danger" />		
 		</div>
 		</div>		
 		

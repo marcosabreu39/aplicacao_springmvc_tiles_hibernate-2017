@@ -12,15 +12,19 @@
     <title><tiles:getAsString name="title"/></title>
     
     <!-- jquery -->
-    <spring:url value="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" var="urlJquery"/>
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <spring:url value="/resources/jquery/jquery-3.2.1.min.js" var="urlJquery"/>
+	<script src="${urlJquery}"></script>
 
-    <!-- Bootstrap -->      
+    <!-- Bootstrap -->
+    <spring:url value="/resources/bootstrap-3.3.7/dist/js/bootstrap.min.js" var="urlBootstrapJs" /> 
+    <script type="text/javascript" src="${urlBootstrapJs}"></script>     
     <spring:url value="/resources/bootstrap-3.3.7/dist/css/bootstrap.css" var="urlBoostrapCss" />               
     <link href="${urlBoostrapCss}" rel="stylesheet">
     
     <!-- css -->
-    <spring:url value="/resources/css/custom.css" var="urlCss" />        
+    <spring:url value="/resources/css/theme.css" var="urlCssTheme" />        
+    <link href="${urlCssTheme}" rel="stylesheet">
+    <spring:url value="/resources/css/custom.css" var="urlCss" />
     <link href="${urlCss}" rel="stylesheet">
             
   </head>

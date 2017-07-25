@@ -1,7 +1,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
+<div class="alert alert-success" role="alert">
 <h3 id="titulo" style="color: green;">${mensagem}</h3>
+</div>
 
 <fieldset class="form-group">
 	
@@ -49,6 +51,6 @@
 
 <script> 
 document.write="Preparando...";
-window.setTimeout("location.href='/JavaPlenoMarcosAbreu/'",3000)
+window.setTimeout("location.href='/JavaPlenoMarcosAbreu/'",4000)
 
 </script>

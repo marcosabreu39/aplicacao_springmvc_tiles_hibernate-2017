@@ -4,11 +4,19 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
-<c:if test="${fn:contains(mensagem, 'erro')}">			
-			<c:set var="cor" value="color: red;"/>
-			</c:if>
-
-<h3 id="titulo" style="${cor}">${mensagem}</h3>>
+<c:choose>
+ <c:when test="${fn:contains(mensagem, 'Erro')}">
+ <c:set var="classe" value="alert alert-danger"/>  
+ </c:when>
+ 
+ <c:otherwise>
+ <c:set var="classe" value="text-info"/>
+ </c:otherwise> 
+  </c:choose>
+  
+ <div class="${classe}" role="alert">
+ <h3 id="titulo">${mensagem}</h3>
+ </div>
 
 <fieldset class="form-group">
 	
@@ -67,7 +75,7 @@
 		</div>
 		
 		<div class="col-sm-12">		
-		<form:errors path="cpf" id="form-error" class="form-control" />		
+		<form:errors path="cpf" class="form-control alert alert-danger" />		
 		</div>
 		
 		</div>	

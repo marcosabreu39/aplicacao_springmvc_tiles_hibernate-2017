@@ -4,11 +4,19 @@
 <%@ page isELIgnored="false" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
-<c:if test="${fn:contains(mensagem, 'erro')}">			
-			<c:set var="cor" value="color: red;"/>
-			</c:if>
-
-<h3 id="titulo" style="${cor}">${mensagem}</h3>>
+<c:choose>
+ <c:when test="${fn:contains(mensagem, 'Erro')}">
+ <c:set var="classe" value="alert alert-danger"/>  
+ </c:when>
+ 
+ <c:otherwise>
+ <c:set var="classe" value="text-info"/>
+ </c:otherwise> 
+  </c:choose>
+  
+ <div class="${classe}" role="alert">
+ <h3 id="titulo">${mensagem}</h3>
+ </div>
 
 <c:url value="/cadastro/selecionar-depto/concluir" var="url" />
 
@@ -45,7 +53,7 @@
 		<label class="col-sm-3 control-label"></label>
 		<div class="col-sm-4">
 		<div class="btn-group">		
-		<form:select cssClass="form-control" path="id">
+		<form:select cssClass="form-control" path="id" id="exampleSelect1">
 			<form:option value="" selected="true" disabled="true" readonly="true" label="Selecione o departamento do empregado" cssStyle="display: none;" />
 			<form:options items="${departamentos}"  itemLabel="nomeDepartamento" itemValue="id"  />		
 		</form:select>				
@@ -54,11 +62,11 @@
 		<label class="col-sm-3 control-label"></label>
 		<div class="col-sm-4">
 		
-		<button type="submit" class="btn btn-default">Finalizar Cadastro</button>
+		<button type="submit" class="btn btn-default" >Finalizar Cadastro <span class="glyphicon glyphicon-save"></span></button>
 		</div>
 		<label class="col-sm-3 control-label"></label>
 		<div class="col-sm-4">
-		<form:errors path="id" id="form-error" class="form-control" />		
+		<form:errors path="id" class="form-control alert alert-danger" />		
 		</div>
 	</div>	
 		

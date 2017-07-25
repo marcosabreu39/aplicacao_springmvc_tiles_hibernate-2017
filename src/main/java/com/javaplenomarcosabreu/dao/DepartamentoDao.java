@@ -40,7 +40,11 @@ public class DepartamentoDao implements Dao<Departamento> {
 
 	@Override
 	public void delete(Departamento departamento) throws Exception {
-		// TODO Auto-generated method stub
+		session = sessionFactory.openSession();
+		session.beginTransaction();
+		session.delete(departamento);
+		session.getTransaction().commit();
+		session.close();
 
 	}
 
@@ -185,5 +189,32 @@ public class DepartamentoDao implements Dao<Departamento> {
 		
 		return total;
 
+	}
+	
+	@SuppressWarnings("unchecked")
+	public String buscarNomeDepto(Integer id) throws Exception{
+		
+		session = sessionFactory.openSession();
+		
+		String hql = "SELECT nomeDepartamento FROM Departamento WHERE id = :id";
+
+		Query query = session.createQuery(hql);
+		
+		query.setParameter("id", id);
+
+		List<String> checking = query.list();
+				
+		String nome = null;
+		
+		for (String n : checking) {
+			
+			nome = n;
+		}		
+		
+		
+		
+		session.close();
+		
+		return nome;
 	}
 }

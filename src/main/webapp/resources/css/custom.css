@@ -5,12 +5,12 @@
 }
 
 .form-group {
-	background-color: #696969;
+	background-color: rgb(70,130,180);
 	border-radius: 2px;
 }
 
 .scheduler-border {
-	background-color: #696969;
+	background-color: rgb(70,130,180);
 	border-radius: 2px;
 	text-align: center;
 	color: white;
@@ -26,7 +26,7 @@
 }
 
 .table-inverse {
-	background-color: #696969;
+	background-color: rgb(70,130,180);
 	color: white;
 }
 
@@ -41,11 +41,16 @@ select#default{
 
 @media screen and (max-width: 768px) {
     #titulo{
-        font-size:14px;
+        font-size:15px;
     }
 }
 
 .btn-outline-secondary :HOVER{
 	background-color: black;
+	color: white;
+}
+
+#exampleSelect1{
+	background-color: rgb(25, 25, 112);
 	color: white;
 }
