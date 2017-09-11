@@ -1,4 +1,4 @@
-package com.javaplenomarcosabreu.controller;
+package com.appspringmvc.controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,12 +16,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.javaplenomarcosabreu.auxiliar.Auxiliar;
-import com.javaplenomarcosabreu.dao.Dao;
-import com.javaplenomarcosabreu.dao.DepartamentoDao;
-import com.javaplenomarcosabreu.dao.EmpregadoDao;
-import com.javaplenomarcosabreu.model.Departamento;
-import com.javaplenomarcosabreu.model.Empregado;
+import com.appspringmvc.auxiliar.Auxiliar;
+import com.appspringmvc.dao.Dao;
+import com.appspringmvc.dao.DepartamentoDao;
+import com.appspringmvc.dao.EmpregadoDao;
+import com.appspringmvc.model.Departamento;
+import com.appspringmvc.model.Empregado;
 
 @Controller
 public class EmpregadoController {

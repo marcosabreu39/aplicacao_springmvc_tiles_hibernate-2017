@@ -1,4 +1,4 @@
-package com.javaplenomarcosabreu.model;
+package com.appspringmvc.model;
 
 import java.io.Serializable;
 import java.util.Date;

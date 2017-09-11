@@ -1,4 +1,4 @@
-package com.javaplenomarcosabreu.model;
+package com.appspringmvc.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -36,7 +36,7 @@ public class Departamento implements Serializable {
 
 	@Column
 	@OneToMany(cascade=CascadeType.ALL)
-	private List<Empregado> empregados = new ArrayList<>();
+	private List<Empregado> empregados;
 	
 	@Transient
 	private List<Departamento> departamentos = new ArrayList<>();

@@ -1,4 +1,4 @@
-package com.javaplenomarcosabreu.config;
+package com.appspringmvc.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 

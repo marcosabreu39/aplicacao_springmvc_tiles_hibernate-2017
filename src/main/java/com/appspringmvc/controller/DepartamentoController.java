@@ -1,4 +1,4 @@
-package com.javaplenomarcosabreu.controller;
+package com.appspringmvc.controller;
 
 import java.util.HashMap;
 import java.util.List;
@@ -16,12 +16,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.javaplenomarcosabreu.auxiliar.Auxiliar;
-import com.javaplenomarcosabreu.dao.Dao;
-import com.javaplenomarcosabreu.dao.DepartamentoDao;
-import com.javaplenomarcosabreu.dao.EmpregadoDao;
-import com.javaplenomarcosabreu.model.Departamento;
-import com.javaplenomarcosabreu.model.Empregado;
+import com.appspringmvc.auxiliar.Auxiliar;
+import com.appspringmvc.dao.Dao;
+import com.appspringmvc.dao.DepartamentoDao;
+import com.appspringmvc.dao.EmpregadoDao;
+import com.appspringmvc.model.Departamento;
+import com.appspringmvc.model.Empregado;
+
 
 @Controller
 public class DepartamentoController {
@@ -82,6 +83,183 @@ public class DepartamentoController {
 		}
 
 		return pagina;
+	}
+	
+	@RequestMapping(value="/detalhes-departamento", method=RequestMethod.POST)
+	public ModelAndView detalhesDoDepartamento(@Valid Departamento departamento, BindingResult result){
+		ModelAndView pagina = null;
+		
+		try {
+			
+if(result.hasErrors()){
+				
+				pagina = new ModelAndView("criar-departamento");
+				
+				pagina.addObject("mensagem", "Ocorreu um erro para exibir o departamento");
+								
+				departamentos = depDao.obterDepartamentos();
+				
+				List<Long> values = depDao.obterDeptosVazios();
+				
+				Map<String, Long> results = new TreeMap<>();
+				
+				results.put("Total de departamentos vazios:", values.get(0));
+				
+				results.put("Total de empregados cadastrados:", empregadoDao.contarTodosOsEmpregados());
+				
+				results.put("Total de departamentos cadastrados:", depDao.contarDepartamentos());
+				
+				pagina.addObject("pagina", "departamento");
+				
+				pagina.addObject("results", results);
+				
+				pagina.addObject("departamentos", departamentos);
+				
+			} else if(departamento.getId() == null || departamento.getId().equals("")){
+				
+				pagina = new ModelAndView("criar-departamento");
+				
+				result.rejectValue("id", "error.departamento", "O departamento não foi encontrado");
+				
+				pagina.addObject("mensagem", "Ocorreu um erro para listar o departamento");
+				
+				departamentos = depDao.obterDepartamentos();
+				
+				List<Long> values = depDao.obterDeptosVazios();
+				
+				Map<String, Long> results = new TreeMap<>();
+				
+				results.put("Total de departamentos vazios:", values.get(0));
+				
+				results.put("Total de empregados cadastrados:", empregadoDao.contarTodosOsEmpregados());
+				
+				results.put("Total de departamentos cadastrados:", depDao.contarDepartamentos());
+				
+				pagina.addObject("pagina", "departamento");
+				
+				pagina.addObject("results", results);
+				
+				pagina.addObject("departamentos", departamentos);
+				
+			} else {
+				
+				pagina = new ModelAndView("detalhes-depto");
+				
+				departamento.setEmpregados(empregadoDao.buscarEmpregados(departamento)); 
+				
+				departamento.setNomeDepartamento(depDao.buscarNomeDepto(departamento.getId()));
+				
+				pagina.addObject("departamento", departamento);
+				
+				pagina.addObject("pagina", "departamento");
+				
+				pagina.addObject("mensagem", "Página de detalhes do departamento");
+				
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return pagina;
+	}
+	
+	@RequestMapping(value="/excluir-departamento", method = RequestMethod.POST)
+	public ModelAndView excluirDepartamento(@Valid Departamento departamento, BindingResult result){
+		
+			ModelAndView pagina = null;
+		
+		try {
+			
+			if(result.hasErrors()){
+				
+				pagina = new ModelAndView("criar-departamento");
+				
+				pagina.addObject("mensagem", "Ocorreu um erro para excluir o departamento");
+								
+				departamentos = depDao.obterDepartamentos();
+				
+				List<Long> values = depDao.obterDeptosVazios();
+				
+				Map<String, Long> results = new TreeMap<>();
+				
+				results.put("Total de departamentos vazios:", values.get(0));
+				
+				results.put("Total de empregados cadastrados:", empregadoDao.contarTodosOsEmpregados());
+				
+				results.put("Total de departamentos cadastrados:", depDao.contarDepartamentos());
+				
+				pagina.addObject("pagina", "departamento");
+				
+				pagina.addObject("results", results);
+				
+				pagina.addObject("departamentos", departamentos);
+				
+			} else if(departamento.getId() == null || departamento.getId().equals("")){
+				
+				pagina = new ModelAndView("criar-departamento");
+				
+				result.rejectValue("id", "error.departamento", "O departamento não foi encontrado");
+				
+				pagina.addObject("mensagem", "Ocorreu um erro para excluir o departamento");
+				
+				departamentos = depDao.obterDepartamentos();
+				
+				List<Long> values = depDao.obterDeptosVazios();
+				
+				Map<String, Long> results = new TreeMap<>();
+				
+				results.put("Total de departamentos vazios:", values.get(0));
+				
+				results.put("Total de empregados cadastrados:", empregadoDao.contarTodosOsEmpregados());
+				
+				results.put("Total de departamentos cadastrados:", depDao.contarDepartamentos());
+				
+				pagina.addObject("pagina", "departamento");
+				
+				pagina.addObject("results", results);
+				
+				pagina.addObject("departamentos", departamentos);
+				
+			} else {				
+								
+				pagina = new ModelAndView("criar-departamento");
+				
+				String nomeDepto = depDao.buscarNomeDepto(departamento.getId());
+				
+				depDao.delete(departamento);
+								
+				departamentos = depDao.obterDepartamentos();
+				
+				List<Long> values = depDao.obterDeptosVazios();
+				
+				Map<String, Long> results = new TreeMap<>();
+				
+				results.put("Total de departamentos vazios:", values.get(0));
+				
+				results.put("Total de empregados cadastrados:", empregadoDao.contarTodosOsEmpregados());
+				
+				results.put("Total de departamentos cadastrados:", depDao.contarDepartamentos());
+				
+				pagina.addObject("pagina", "departamento");
+				
+				pagina.addObject("results", results);
+				
+				pagina.addObject("departamentos", departamentos);
+				
+				pagina.addObject("pagina", "departamento");
+				
+				pagina.addObject("mensagem", "O departamento " + nomeDepto + " foi excluído com sucesso");
+							
+							
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return pagina;
+		
 	}
 
 	@RequestMapping(value = "/criar-departamento", method = RequestMethod.POST)
@@ -392,102 +570,6 @@ public class DepartamentoController {
 		return pagina;
 	}
 	
-	@RequestMapping(value="/excluir-departamento", method = RequestMethod.POST)
-	public ModelAndView excluirDepartamento(@Valid Departamento departamento, BindingResult result){
-		
-			ModelAndView pagina = null;
-		
-		try {
-			
-			if(result.hasErrors()){
-				
-				pagina = new ModelAndView("criar-departamento");
-				
-				pagina.addObject("mensagem", "Ocorreu um erro para excluir o departamento");
-								
-				departamentos = depDao.obterDepartamentos();
-				
-				List<Long> values = depDao.obterDeptosVazios();
-				
-				Map<String, Long> results = new TreeMap<>();
-				
-				results.put("Total de departamentos vazios:", values.get(0));
-				
-				results.put("Total de empregados cadastrados:", empregadoDao.contarTodosOsEmpregados());
-				
-				results.put("Total de departamentos cadastrados:", depDao.contarDepartamentos());
-				
-				pagina.addObject("pagina", "departamento");
-				
-				pagina.addObject("results", results);
-				
-				pagina.addObject("departamentos", departamentos);
-				
-			} else if(departamento.getId() == null || departamento.getId().equals("")){
-				
-				pagina = new ModelAndView("criar-departamento");
-				
-				result.rejectValue("id", "error.departamento", "O departamento não foi encontrado");
-				
-				pagina.addObject("mensagem", "Ocorreu um erro para excluir o departamento");
-				
-				departamentos = depDao.obterDepartamentos();
-				
-				List<Long> values = depDao.obterDeptosVazios();
-				
-				Map<String, Long> results = new TreeMap<>();
-				
-				results.put("Total de departamentos vazios:", values.get(0));
-				
-				results.put("Total de empregados cadastrados:", empregadoDao.contarTodosOsEmpregados());
-				
-				results.put("Total de departamentos cadastrados:", depDao.contarDepartamentos());
-				
-				pagina.addObject("pagina", "departamento");
-				
-				pagina.addObject("results", results);
-				
-				pagina.addObject("departamentos", departamentos);
-				
-			} else {				
-								
-				pagina = new ModelAndView("criar-departamento");
-				
-				String nomeDepto = depDao.buscarNomeDepto(departamento.getId());
-				
-				depDao.delete(departamento);
-								
-				departamentos = depDao.obterDepartamentos();
-				
-				List<Long> values = depDao.obterDeptosVazios();
-				
-				Map<String, Long> results = new TreeMap<>();
-				
-				results.put("Total de departamentos vazios:", values.get(0));
-				
-				results.put("Total de empregados cadastrados:", empregadoDao.contarTodosOsEmpregados());
-				
-				results.put("Total de departamentos cadastrados:", depDao.contarDepartamentos());
-				
-				pagina.addObject("pagina", "departamento");
-				
-				pagina.addObject("results", results);
-				
-				pagina.addObject("departamentos", departamentos);
-				
-				pagina.addObject("pagina", "departamento");
-				
-				pagina.addObject("mensagem", "O departamento " + nomeDepto + " foi excluído com sucesso");
-							
-							
-			}
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return pagina;
-		
-	}
+	
 
 }

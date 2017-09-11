@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.javaplenomarcosabreu</groupId>
-  <artifactId>JavaPlenoMarcosAbreu</artifactId>
+  <groupId>com.appspringmvc</groupId>
+  <artifactId>AppSpringMVC</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
   <build>
@@ -117,12 +117,7 @@
 			<artifactId>hibernate-validator</artifactId>
 			<version>5.2.4.Final</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/cn.guoyukun.jdbc/oracle-ojdbc6 -->
-		<dependency>
-			<groupId>com.hynnet</groupId>
-			<artifactId>oracle-driver-ojdbc</artifactId>
-			<version>12.1.0.2</version>
-		</dependency>		
+						
 		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-slf4j-impl -->
 		<dependency>
     		<groupId>org.apache.logging.log4j</groupId>

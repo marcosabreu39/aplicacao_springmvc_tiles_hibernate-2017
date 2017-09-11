@@ -1,4 +1,4 @@
-package com.javaplenomarcosabreu.controller;
+package com.appspringmvc.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;

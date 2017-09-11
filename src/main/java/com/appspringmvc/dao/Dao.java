@@ -1,4 +1,4 @@
-package com.javaplenomarcosabreu.dao;
+package com.appspringmvc.dao;
 
 public interface Dao<T> {
 

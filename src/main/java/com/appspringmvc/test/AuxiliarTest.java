@@ -1,8 +1,8 @@
-package com.javaplenomarcosabreu.test;
+package com.appspringmvc.test;
 
 import org.junit.Test;
 
-import com.javaplenomarcosabreu.auxiliar.Auxiliar;
+import com.appspringmvc.auxiliar.Auxiliar;
 
 import junit.framework.Assert;
 

@@ -1,4 +1,4 @@
-package com.javaplenomarcosabreu.dao;
+package com.appspringmvc.dao;
 
 import java.util.List;
 
@@ -7,9 +7,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
-import com.javaplenomarcosabreu.config.HibernateUtil;
-import com.javaplenomarcosabreu.model.Departamento;
-import com.javaplenomarcosabreu.model.Empregado;
+import com.appspringmvc.config.HibernateUtil;
+import com.appspringmvc.model.Departamento;
+import com.appspringmvc.model.Empregado;
 
 @Repository
 public class EmpregadoDao implements Dao<Empregado> {

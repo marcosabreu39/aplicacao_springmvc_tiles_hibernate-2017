@@ -39,7 +39,7 @@
 		<label class="col-sm-3 control-label"></label>
 		<div class="col-sm-4">
 		
-		<button type="submit" class="btn btn-default">Listar Empregados do Departamento <span class="glyphicon glyphicon-th-list"></button>
+		<button type="submit" class="btn btn-default">Listar Empregados do Departamento <span class="glyphicon glyphicon-th-list"></span></button>
 		</div>
 		<label class="col-sm-3 control-label"></label>
 		<div class="col-sm-4">

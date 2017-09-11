@@ -142,7 +142,7 @@
 		
 	</definition>
 		
-		<!-- atualizar-departamento --> 
+		<!-- atualizar-depto --> 
 
 	<definition name="atualizar-depto" template="/WEB-INF/views/template/template.jsp">
 
@@ -151,6 +151,21 @@
 		<put-attribute name="nav" type="template" value="/WEB-INF/views/template/partes/nav.jsp" />		
 
 		<put-attribute name="body" type="template" value="/WEB-INF/views/public/atualizar-depto.jsp" />
+
+		<put-attribute name="footer" type="template" value="/WEB-INF/views/template/partes/footer.jsp" />
+
+	</definition>
+	
+	
+	<!-- detalhes-depto --> 
+
+	<definition name="detalhes-depto" template="/WEB-INF/views/template/template.jsp">
+
+		<put-attribute name="title" value="Página de detalhes do departamento" />
+
+		<put-attribute name="nav" type="template" value="/WEB-INF/views/template/partes/nav.jsp" />		
+
+		<put-attribute name="body" type="template" value="/WEB-INF/views/public/detalhes-depto.jsp" />
 
 		<put-attribute name="footer" type="template" value="/WEB-INF/views/template/partes/footer.jsp" />
 

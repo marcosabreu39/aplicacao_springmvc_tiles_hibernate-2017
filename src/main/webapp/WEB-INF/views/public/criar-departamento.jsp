@@ -23,7 +23,9 @@
 
 <fieldset class="form-group">
 
-<c:url value="/excluir-departamento" var="url1" />
+<%-- <c:url value="/excluir-departamento" var="url1" /> --%>
+
+<c:url value="/detalhes-departamento" var="url1" />
 
 <c:url value="/criar-departamento" var="url2" />
 	
@@ -46,7 +48,7 @@
 		<div class="form-group row">
 		<label class="col-sm-2 control-label">Excluir Departamento</label>
 		<div class="col-sm-5">
-		<button type="submit" class="btn btn-default">Excluir Departamento <span class="glyphicon glyphicon-remove"></span></button>	
+		<button type="submit" class="btn btn-default">Detalhes do Departamento <span class="glyphicon glyphicon-th-list"></span></button>	
 		</div>
 		<div class="col-sm-4">
 		<form:errors path="id" class="form-control alert alert-danger" />

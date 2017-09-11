@@ -1,10 +1,10 @@
-package com.javaplenomarcosabreu.auxiliar;
+package com.appspringmvc.auxiliar;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
-import com.javaplenomarcosabreu.model.Departamento;
+import com.appspringmvc.model.Departamento;
 
 @Component
 public class StringToDepartamentoConverter implements Converter<String, Departamento> {

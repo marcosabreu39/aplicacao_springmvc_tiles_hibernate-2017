@@ -1,4 +1,4 @@
-package com.javaplenomarcosabreu.config;
+package com.appspringmvc.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -12,13 +12,13 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 
-import com.javaplenomarcosabreu.auxiliar.StringToDepartamentoConverter;
-import com.javaplenomarcosabreu.controller.EmpregadoController;
-import com.javaplenomarcosabreu.model.Departamento;
+import com.appspringmvc.auxiliar.StringToDepartamentoConverter;
+import com.appspringmvc.controller.EmpregadoController;
+import com.appspringmvc.model.Departamento;
 
 @Configuration
 /* context:component-scan */
-@ComponentScan(basePackages = "com.javaplenomarcosabreu")
+@ComponentScan(basePackages = "com.appspringmvc")
 /* mvc:annotation-driven */
 @EnableWebMvc
 public class MyAppConfig extends WebMvcConfigurerAdapter {

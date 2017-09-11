@@ -1,10 +1,10 @@
-package com.javaplenomarcosabreu.test;
+package com.appspringmvc.test;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import com.javaplenomarcosabreu.dao.DepartamentoDao;
+import com.appspringmvc.dao.DepartamentoDao;
 
 import junit.framework.Assert;
 

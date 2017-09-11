@@ -1,4 +1,4 @@
-package com.javaplenomarcosabreu.auxiliar;
+package com.appspringmvc.auxiliar;
 
 
 import java.text.ParseException;

@@ -1,4 +1,4 @@
-package com.javaplenomarcosabreu.config;
+package com.appspringmvc.config;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -6,8 +6,8 @@ import org.hibernate.cfg.AvailableSettings;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
-import com.javaplenomarcosabreu.model.Departamento;
-import com.javaplenomarcosabreu.model.Empregado;
+import com.appspringmvc.model.Departamento;
+import com.appspringmvc.model.Empregado;
 
 
 public class HibernateUtil {
