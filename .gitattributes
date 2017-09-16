@@ -1,2 +1,3 @@
-client/stylesheets/* linguist-vendored
+* linguist-vendored
+*.js linguist-vendored=false
 
