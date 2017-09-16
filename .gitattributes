@@ -1,2 +1,4 @@
-.bat	text eol=crlf
+static/* linguist-vendored
+docs/* linguist-documentation
+*.rb linguist-language=Java
 
