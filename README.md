@@ -1,9 +1,14 @@
-Tecnologias utilizadas no projeto:
+# AplicacaoSpringMVC
 
--Arquitetura MVC;
+## Tecnologias
 
--Model com os design patterns Dao e Template com o framework hibernate 5 e o banco de dados Oracle 11g;
-
--View utilizando os frameworks Apache Tiles para o template e Bootstrap para o design;
-
--Controller utilizando o framework Spring MVC 4, que utiliza o design pattern Front Controller;
+* Arquitetura MVC;
+* Spring MVC 4;
+* JPA2(Hibernate 5);
+* Maven;
+* Apache Tiles;
+* Bootstrap;
+* CDI;
+* Servidor de Aplicação Glassfish 4.1;
+* Banco de dados Oracle 11g;
+* IDE Eclipse Oxygen.
