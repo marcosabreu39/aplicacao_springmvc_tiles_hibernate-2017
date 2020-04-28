@@ -10,4 +10,4 @@
 * Bootstrap 3;
 * Servidor de Aplicação Glassfish 4.1;
 * Banco de dados Oracle 11g;
-* IDE Eclipse Oxygen.
+* IDE Eclipse Neon 3.
