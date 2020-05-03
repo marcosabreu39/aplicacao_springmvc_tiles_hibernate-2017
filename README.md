@@ -1,4 +1,4 @@
-# AplicacaoSpringMVC
+# Aplicação com Spring MVC
 
 ## Tecnologias
 
