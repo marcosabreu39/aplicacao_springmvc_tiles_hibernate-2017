@@ -2,7 +2,9 @@
 
 ## Tecnologias
 
+* Java 8;
 * Arquitetura MVC;
+* Design Pattern DAO;
 * Spring MVC 4;
 * JPA2(Hibernate 5);
 * Maven;
