@@ -1,4 +1,4 @@
-# Aplicação com Spring MVC
+# Aplicação com Spring MVC, Apache Tiles e Hibernate
 
 ## Tecnologias
 
